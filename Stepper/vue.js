@@ -2,7 +2,7 @@ const App = {
   data() {
     return {
       activeIndex: 0,
-      lastStep: false,
+      isFinish: false,
       steps: [
         {title: 'Основы', text: 'В блоке вы познакомитесь со всеми основами Vue.js на практике. На протяжении блока мы напишем реактивное приложение, в процессе разработки которого разберем вся базу фреймворка.'},
         {title: 'Компоненты', text: 'Один из самых важных блоков в курсе, где вы узнаете все о компонентах. В блоке мы напишем 2 разных приложения и создадим более 5 различных UI компонентов как в реальной разработке. Блок расскажет про абсолютно все составляющие, которые есть в компонентах: взаимодействие, slots, асинхронные и динамические компоненты и тонна примеров.'},
@@ -10,6 +10,14 @@ const App = {
         {title: 'Vuex', text: 'В блоке вы узнаете абсолютно все про Vuex. Вы узнаете как работать с данными, какие есть лучшие практики по их программированию и структурированию. Все на практике.'},
         {title: 'Composition', text: 'Одним из наиболее важных обновлений в Vue 3 является появление альтернативного синтаксиса Composition API. В этом блоке вы узнаете все, чтобы полностью пользоваться данными синтаксисом на практических примерах. Помимо этого вы узнаете как работать совместно с Vue Router и Vuex.'},
       ]
+    }
+  },
+  computed: {
+    isLastStep() {
+      return this.activeIndex < this.steps.length - 1
+    },
+    isDisabled() {
+      return this.activeIndex === 0;
     }
   },
   methods: {
@@ -20,13 +28,13 @@ const App = {
     },
     reset() {
       this.activeIndex = 0;
-      this.lastStep = false;
+      this.isFinish = false;
     },
     nextOfFinish() {
-      if (this.activeIndex < this.steps.length - 1) {
+      if (this.isLastStep) {
         this.activeIndex++;
       } else {
-        this.lastStep = true;
+        this.isFinish = true;
       }
     },
     setActive(idx) {
