@@ -31,23 +31,9 @@
       <h3 v-else>Добавьте первый блок, чтобы увидеть результат</h3>
     </div>
   </div>
-  <div class="container">
-    <p>
-      <button class="btn primary">Загрузить комментарии</button>
-    </p>
-    <div class="card">
-      <h2>Комментарии</h2>
-      <ul class="list">
-        <li class="list-item">
-          <div>
-            <p><strong>test@microsoft.com</strong></p>
-            <small>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi, reiciendis.</small>
-          </div>
-        </li>
-      </ul>
-    </div>
-    <div class="loader"></div>
-  </div>
+
+  <Card />
+
 </template>
 
 <script>
@@ -55,16 +41,17 @@ import Title from './components/Title.vue';
 import Avatar from './components/Avatar.vue';
 import Subtitle from './components/Subtitle.vue';
 import Text from './components/Text.vue';
+import Card from './components/Card.vue';
 
 export default {
-  components: {
-    Title, Avatar, Subtitle, Text
-  },
   data: () => ({
     components: [],
     selectType: 'title',
     formText: '',
   }),
+  components: {
+    Title, Avatar, Subtitle, Text, Card
+  },
   computed: {
     isDisabled() {
       return this.formText.length > 2;
@@ -105,7 +92,7 @@ export default {
         })
       }
       this.reset();
-    }
+    },
   }
 }
 </script>
